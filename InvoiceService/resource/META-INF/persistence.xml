@@ -1,0 +1,24 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"  version="2.1">
+
+  <persistence-unit name="jpa-invoice" transaction-type="RESOURCE_LOCAL">
+	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+	<non-jta-data-source>myNonJtaDataSource</non-jta-data-source>
+	
+	<class>com.invoice.bean.CustomerDetailBean</class>
+	<class>com.invoice.bean.DispatchDetailBean</class>
+	<class>com.invoice.bean.ItemDetailBean</class>
+	
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+   
+    <properties>
+      <!-- Hibernate properties -->
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="true" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+      <property name="hibernate.hbm2ddl.auto" value="validate" />
+    </properties>
+    
+  </persistence-unit>
+</persistence>
