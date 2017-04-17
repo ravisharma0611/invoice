@@ -20,7 +20,7 @@ create table CUSTOMERDETAIL (
 	GRAND_TOTAL_WORDS VARCHAR(75) null
 );
 
-create table DESPATCH_DETAIL (
+create table DISPATCH_DETAIL (
 	IDKEY_DESPATCH LONG not null primary key,
 	PER_RR_MM_NO VARCHAR(75) null,
 	PER_RR_MM_NO_DATE DATE null,
