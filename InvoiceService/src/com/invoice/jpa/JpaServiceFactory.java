@@ -8,9 +8,8 @@ public class JpaServiceFactory {
 	private static JpaService jpaService = null;
 	
 	public static JpaService getFactory(){
-		
 		if(jpaServiceImpl == null){
-			return jpaService = JpaServiceImpl.createInstance(unitName);
+			return jpaService = new JpaServiceImpl(unitName);
 		}else{
 			return jpaService;
 		}

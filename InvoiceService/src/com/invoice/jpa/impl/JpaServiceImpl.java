@@ -16,21 +16,11 @@ import com.invoice.jpa.JpaService;
  */
 public class JpaServiceImpl implements JpaService {
 
-	private static JpaServiceImpl jpaServiceImpl = null;
 	private static EntityManagerFactory managerFactory =null;
 	
-	private JpaServiceImpl() {
-	}
-	
-	private JpaServiceImpl(String unitName) {
-		managerFactory = Persistence.createEntityManagerFactory(unitName);
-	}
-	
-	public static JpaService createInstance(String unitName){
+	public JpaServiceImpl(String unitName) {
 		if(managerFactory == null){
-			return jpaServiceImpl = new JpaServiceImpl(unitName);
-		}else{
-			return jpaServiceImpl;
+			managerFactory = Persistence.createEntityManagerFactory(unitName);
 		}
 	}
 	
