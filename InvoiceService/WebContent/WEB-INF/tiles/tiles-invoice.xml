@@ -19,8 +19,8 @@
 	</definition>
 
 	<definition name="invoiceHome.page" extends="baseLayout.page">
-		<put-attribute name="header" value="" />
-		<put-attribute name="body" value="/pages/index.jsp" />
+		<put-attribute name="header" value="/pages/header.jsp" />
+		<put-attribute name="body" value="/pages/customerDetails.jsp" />
 		<put-attribute name="footer" value="" />
 	</definition>
 </tiles-definitions>

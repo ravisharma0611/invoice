@@ -1,19 +1,19 @@
 package com.login.bean;
 
-import java.util.Date;
 
 public class RegisterUserBean {
 
 	private String firstName;
+	private String middleName;
 	private String lastName;
 	
 	private String userName;
 	private String password;
 	
 	private String emailId;
-	private long phoneNumber;
+	/*private long phoneNumber;
 	private Date dateOfBirth;
-	private String gender;
+	private String gender;*/
 	
 	public String getFirstName() {
 		return firstName;
@@ -45,22 +45,20 @@ public class RegisterUserBean {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public long getPhoneNumber() {
-		return phoneNumber;
+	public String getMiddleName() {
+		return middleName;
 	}
-	public void setPhoneNumber(long phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	@Override
+	public String toString() {
+		return "RegisterUserBean [firstName=" + firstName + ", middleName="
+				+ middleName + ", lastName=" + lastName + ", userName="
+				+ userName + ", password=" + password + ", emailId=" + emailId
+				+ "]";
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+	
+	
+	
 }
