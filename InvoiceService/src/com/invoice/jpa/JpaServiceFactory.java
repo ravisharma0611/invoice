@@ -7,7 +7,7 @@ public class JpaServiceFactory {
 	private static JpaServiceImpl jpaServiceImpl = null;
 	private static JpaService jpaService = null;
 	
-	public static JpaService getFactory(){
+	public static synchronized JpaService getFactory(){
 		if(jpaServiceImpl == null){
 			return jpaService = new JpaServiceImpl(unitName);
 		}else{
