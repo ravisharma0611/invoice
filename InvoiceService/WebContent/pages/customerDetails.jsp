@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Customer Details</title>
 </head>
 <body>
-	<div class="container" style="margin-top: 30px">
+<!-- style="margin-top: 30px" -->
+	<div class="container" >
 		<div class="col-md-20 col-md-offset-0" >
 			<div class="panel panel-default" >
 				<div class="panel-heading">
@@ -17,44 +18,44 @@
 					</h3>
 				</div>
 <!--   <div class="panel-body"> -->
-				<div class="table-responsive" style="width: auto;">
+				<!-- <div class="table-responsive" style="width: auto;"> -->
 
-<s:form action="" theme="css_xhtml" cssClass="">
+<s:form action="submitInvoiceActionName" method="post" theme="simple">
 					<div class="panel-heading">	
 					<h4 class="panel-title">
 						<strong>Customer Information</strong>
 					</h4>
-					</div>
+					</div><!-- table table-bordered table-striped table-highlight table-hover -->
 					<table class="table table-bordered table-striped table-highlight table-hover" >
 						<tr>
 							<td><b>Invoice Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.invoiceNo" autocomplete="off" required="true" /></td>
 							<td><b>Invoice Date</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" id="datepicker" name="customerDetailBean.invoiceDate" autocomplete="off" required="true" /></td>
 						</tr>
 						<tr>
 							<td><b>Name</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.billedName" autocomplete="off" required="true" /></td>
 							<td><b>Address</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.billedAddress" autocomplete="off" required="true" /></td>
 						</tr>
 						<tr>
 							<td><b>Vat Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.vatNo" autocomplete="off" required="true" /></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td><b>Challan Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.challanNo" autocomplete="off" required="true" /></td>
 							<td><b>Challan Date</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.challanNoDate" autocomplete="off" required="true" /></td>
 						</tr>
 						<tr>
 							<td><b>IND/W.O./O.O. Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.poNo" autocomplete="off" required="true" /></td>
 							<td><b>IND/W.O./O.O. Date</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.poNoDate" autocomplete="off" required="true" /></td>
 						</tr>
 					</table>
 
@@ -66,25 +67,25 @@
 					<table class="table table-bordered table-striped table-highlight table-hover" >
 						<tr>
 							<td><b>By Motor Transport</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.byMotorTransport" autocomplete="off" required="true" /></td>
 							<td><b>Despatch To</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.despatchTo" autocomplete="off" required="true" /></td>
 						</tr>
 						<tr>
 							<td><b>Per R.R/M.R. Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.perRrMmNumber" autocomplete="off" required="true" /></td>
 							<td><b>Per R.R/M.R. Date</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.perRrMmNumberDate" autocomplete="off" required="true" /></td>
 						</tr>
 						<tr>
 							<td><b>B.L. Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.blNumber" autocomplete="off" required="true" /></td>
 							<td><b>B.L. Number Date</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.blNumberDate" autocomplete="off" required="true" /></td>
 						</tr>
 						<tr>
 							<td><b>Document Through Bank</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="registerUserBean.firstName" autocomplete="off" required="true" /></td>
+							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.documentThruBank" autocomplete="off" required="true" /></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -103,7 +104,7 @@
 							</div>
 							
 				</s:form>
-				</div>
+				<!-- </div> -->
 			<!-- </div> -->
 		</div>
 	</div>

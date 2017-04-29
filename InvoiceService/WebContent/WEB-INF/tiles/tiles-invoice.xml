@@ -12,15 +12,45 @@
 <tiles-definitions>
 
 	<definition name="baseLayout.page" template="/pages/baseLayout.jsp">
-		<put-attribute name="script" value="" />
+		<put-attribute name="script" value="/pages/script.jsp" />
 		<put-attribute name="header" value="" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="" />
 	</definition>
 
+	<definition name="login.page" extends="baseLayout.page">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body" value="/pages/index.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="dashboard.page" extends="baseLayout.page">
+		<put-attribute name="header" value="/pages/header.jsp" />
+		<put-attribute name="body" value="/pages/dashboard.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="register.page" extends="baseLayout.page">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body" value="/pages/register.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
 	<definition name="invoiceHome.page" extends="baseLayout.page">
 		<put-attribute name="header" value="/pages/header.jsp" />
 		<put-attribute name="body" value="/pages/customerDetails.jsp" />
+		<put-attribute name="footer" value="/pages/footer.jsp" />
+	</definition>
+	
+	<definition name="invoiceSearch.page" extends="baseLayout.page">
+		<put-attribute name="header" value="/pages/header.jsp" />
+		<put-attribute name="body" value="/pages/searchPage/invoiceSearch.jsp" />
+		<put-attribute name="footer" value="/pages/footer.jsp" />
+	</definition>
+	
+	<definition name="error.page" extends="baseLayout.page">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body" value="/pages/error.jsp" />
 		<put-attribute name="footer" value="" />
 	</definition>
 </tiles-definitions>

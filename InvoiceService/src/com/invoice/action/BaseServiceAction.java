@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class BaseServiceAction extends ActionSupport implements SessionAware, RequestAware, ServletRequestAware, ServletResponseAware {
 	private static final long serialVersionUID = 1L;
-	Map<String, Object> sessionData ;
+	public Map<String, Object> sessionMap ;
 	HttpServletRequest request ;
 	HttpServletResponse response;
 	
@@ -23,7 +23,10 @@ public class BaseServiceAction extends ActionSupport implements SessionAware, Re
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-		this.sessionData = session;
+		this.sessionMap = session;
+	}
+	public Map<String, Object> getSession() {
+        return sessionMap;
 	}
 
 	@Override

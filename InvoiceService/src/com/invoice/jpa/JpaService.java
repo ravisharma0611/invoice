@@ -19,4 +19,7 @@ public interface JpaService {
 	
 	void commitAndCloseEntityManager();
 
+	<T> List<T> getUsingNativeQuery(String nativeQquery,Map<Integer, Object> parameters, Class<T> className)
+			throws Exception;
+
 }

@@ -5,15 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Invoice Service</title>
+<link rel="icon" type="image/png" href="image/favicon.ico" />
 </head>
 <body>
+<div id="wrapper">
 	<tiles:insertAttribute name="script" />
 
 	<tiles:insertAttribute name="header" />
-
+<br/>
 	<tiles:insertAttribute name="body" />
 
 	<tiles:insertAttribute name="footer" />
+</div>
 </body>
 </html>

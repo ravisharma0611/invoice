@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-this is search Page
+
+<div class="footer">
+      
+    
+            <div class="row">
+                <div class="col-lg-12" >
+                    &copy;  2017 google.com | Design by: <a href="http://xyz.com" style="color:#fff;" target="_blank">www.google.com</a>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

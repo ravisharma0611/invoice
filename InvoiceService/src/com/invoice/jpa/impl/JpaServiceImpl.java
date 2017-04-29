@@ -20,7 +20,7 @@ import com.invoice.jpa.JpaService;
  */
 public class JpaServiceImpl implements JpaService {
 
-	private EntityManagerFactory managerFactory =null;
+	private static EntityManagerFactory managerFactory =null;
 	private EntityManager entityManager;
 	
 	public JpaServiceImpl(String unitName) {
@@ -135,6 +135,7 @@ public class JpaServiceImpl implements JpaService {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Override
 	public <T> List<T> getUsingNativeQuery(String nativeQquery, Map<Integer, Object> parameters,Class<T> className) throws Exception {
 		List<T> list = null;
 		try{

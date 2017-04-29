@@ -6,14 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Header</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="shortcut icon" href="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/fire-16.png" type="image/x-icon" />
+<%-- <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.min.js"></script>
+<script src="js/scripts.min.js"></script> --%>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -23,17 +24,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Invoice Service</a>
+     <s:url action="dashboard" var="dashURL" />  <s:a cssClass="navbar-brand" href="%{dashURL}">Invoice Service</s:a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Create <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Search</a></li>
+      <!-- class="active" -->
+        <li><s:url action="invoiceHome" var="aURL" /><s:a href="%{aURL}">Create <span class="sr-only">(current)</span></s:a></li>
+        <li><s:url action="invoiceSearch" var="sURL" /><s:a href="%{sURL}">Search</s:a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> &nbsp;<button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button><!-- <a href="#">Link</a> --></li>
+        <!-- <button type="submit" class="btn btn-link navbar-btn navbar-link"> Log off </button> -->
+        <s:url action="logout" var="outURL" /> 
+        <li><s:a href="%{outURL}">Log off</s:a></li>
+        <li>&nbsp;&nbsp;&nbsp;</li>
+        <li><p class="navbar-text ">Signed in as <a href="#" class="navbar-link"><s:property value='%{#session.SESSION_DATA.firstName}'/> </a></p>  </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

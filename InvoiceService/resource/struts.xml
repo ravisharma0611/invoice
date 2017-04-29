@@ -13,30 +13,82 @@
 	<constant name="struts.devMode" value="true" />
 	<package name="default" extends="struts-default, tiles-default" namespace="/">
 
+		<interceptors>
+                <interceptor class="com.invoice.action.intercepter.LoginInterceptor" name="loginInterceptor">
+                </interceptor>
+                <interceptor-stack name="loginStack">
+                        <interceptor-ref name="loginInterceptor" />
+                        <interceptor-ref name="defaultStack" />
+                </interceptor-stack>
+        </interceptors>
+        
+        <!-- Action Start -->
 		<action name="submitInvoiceActionName" class="com.invoice.action.InvoiceBillAction"
 			method="submitInvoiceBill">
+			<interceptor-ref name="loginStack" />
 			<result name="success" type="tiles">invoiceHome.page</result>
-			<result name="error">/pages/error.jsp</result>
+			<result name="login" type="tiles">login.page</result>
+			<result name="error" type="tiles">error.page</result>
 		</action>
-	
 			
-		<action name="login" class="com.login.action.LoginAction"
-			method="loginUser">
-			<result name="success" type="tiles">invoiceHome.page</result>
-			<result name="error">/pages/error.jsp</result>
+		<action name="login" class="com.login.action.LoginAction" method="loginUser">
+			<!-- <interceptor-ref name="loginStack" /> -->
+			<result name="success" type="redirect">dashboard</result>
+			<result name="login" type="tiles">login.page</result>
+			<result name="input" type="tiles">login.page</result>
+			<result name="error" type="tiles">error.page</result>
 		</action>
 		
-		<action name="register" class="com.login.action.LoginAction"
+		<action name="logout" class="com.login.action.LoginAction"	method="logOut">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="tiles">login.page</result>
+			<result name="login" type="tiles">login.page</result>
+			<result name="error" type="tiles">error.page</result>
+		</action>
+		
+		<action name="dashboard">
+			<interceptor-ref name="loginStack" />
+			<result name="login" type="tiles">login.page</result>
+			<result type="tiles">dashboard.page</result>
+		</action>
+		
+		<action name="invoiceHome">
+			<interceptor-ref name="loginStack" />
+			<result name="login" type="tiles">login.page</result>
+			<result type="tiles">invoiceHome.page</result>
+		</action>
+		
+		<action name="invoiceSearch">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="tiles">invoiceSearch.page</result>
+			<result name="login" type="tiles">login.page</result>
+		</action>
+		
+		<action name="registerAction" class="com.login.action.LoginAction"
 			method="registerUser">
-			<result name="success">/pages/customerDetails.jsp</result>
-			<result name="error">/pages/error.jsp</result>
+			<!-- <interceptor-ref name="loginStack" /> -->
+			<result name="success">/pages/registration.jsp</result>
+			<result name="login" type="tiles">login.page</result>
+			<result name="input">/pages/registration.jsp</result>
+			<result name="error" type="tiles">error.page</result>
 		</action>
 		<action name="">
-			<result>/pages/index.jsp</result>
+			<result type="tiles">login.page</result>
 		</action>
 		
 		<action name="register" >
 			<result>/pages/registration.jsp</result>
 		</action>
+		<!-- inline-attachment -->
+		<action name="downloadInvoice" class="com.invoice.action.FileDownloadAction"
+			method="fileDownloadMethod">
+			<result name="success" type="stream">
+			  <param name="contentType">application/octet-stream</param>
+			  <param name="inputName">${fileInputStream}</param>
+			  <param name="contentDisposition">attachment;filename="eCertificate.pdf"</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+			<result name="input"></result>
+	   </action>
 	</package>
 </struts>

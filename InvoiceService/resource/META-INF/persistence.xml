@@ -4,20 +4,22 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"  version="2.1">
 
   <persistence-unit name="jpa-invoice" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-	<non-jta-data-source>myNonJtaDataSource</non-jta-data-source>
+	<non-jta-data-source>java:comp/env/jdbc/fireServices</non-jta-data-source>
 	
 	<class>com.invoice.bean.CustomerDetailBean</class>
 	<class>com.invoice.bean.DispatchDetailBean</class>
 	<class>com.invoice.bean.ItemDetailBean</class>
+	<class>com.login.bean.UserBean</class>
+	
 	
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
    
-    <!-- <properties>
-      <property name="hibernate.show_sql" value="true" />
+     <properties>
+      <property name="hibernate.show_sql" value="false" />
       <property name="hibernate.format_sql" value="true" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
-      <property name="hibernate.hbm2ddl.auto" value="validate" />
-    </properties> -->
+      <!-- <property name="hibernate.hbm2ddl.auto" value="validate" /> -->
+    </properties>
     
   </persistence-unit>
 </persistence>
