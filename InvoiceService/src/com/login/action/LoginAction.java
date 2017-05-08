@@ -13,6 +13,7 @@ import com.invoice.jpa.JpaServiceFactory;
 import com.login.bean.UserBean;
 import com.opensymphony.xwork2.ActionContext;
 
+@SuppressWarnings("serial")
 public class LoginAction extends BaseServiceAction {
 	UserBean userBean = new UserBean();
 	SessionData sessionData = SessionData.getInstance();

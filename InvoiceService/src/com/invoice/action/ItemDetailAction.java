@@ -1,18 +1,20 @@
 package com.invoice.action;
 
 import com.invoice.bean.ItemDetailBean;
+import com.invoice.jpa.JpaService;
 import com.invoice.jpa.JpaServiceFactory;
-import com.invoice.jpa.impl.JpaServiceImpl;
 
 @SuppressWarnings("serial")
 public class ItemDetailAction extends BaseServiceAction{
 	private ItemDetailBean itemDetailBean;
-	JpaServiceImpl jpaService = (JpaServiceImpl) JpaServiceFactory.getFactory();
+	JpaService jpaService = JpaServiceFactory.getFactory();
 	
 	
 	public String submitItemDetails()throws Exception{
 		try{
 			jpaService.createEntityManager();
+			itemDetailBean.setInvoiceNo(76548l);
+			jpaService.saveEntity(itemDetailBean);
 			
 		}catch(Exception e){
 			throw e;

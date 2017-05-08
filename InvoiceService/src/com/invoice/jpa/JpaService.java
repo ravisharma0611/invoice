@@ -15,11 +15,12 @@ public interface JpaService {
 	
 	<T> List<T> getUsingNativeQuery(String nativeQquery,Map<Integer,Object> parameters)throws Exception;
 	
+	<T> List<T> getUsingNativeQuery(String nativeQquery,Map<Integer,Object> parameters,Class<T> className)throws Exception;
+	
 	void createEntityManager()throws Exception;
 	
 	void commitAndCloseEntityManager();
 
-	<T> List<T> getUsingNativeQuery(String nativeQquery,Map<Integer, Object> parameters, Class<T> className)
-			throws Exception;
+	
 
 }

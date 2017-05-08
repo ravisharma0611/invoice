@@ -39,6 +39,7 @@ public class JpaServiceImpl implements JpaService {
 				throw new Exception("Entity Manager is closed");
 			}
 		}catch(Exception e){
+			e.printStackTrace();
 			throw e;
 		}
 	}
