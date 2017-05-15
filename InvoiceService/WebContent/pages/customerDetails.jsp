@@ -29,7 +29,7 @@
 					<table class="table table-bordered table-striped table-highlight table-hover" >
 						<tr>
 							<td><b>Invoice Number</b><span class="important">:*</span></td>
-							<td><s:textfield cssClass="form-control" name="customerDetailBean.invoiceNo" autocomplete="off" required="true" /></td>
+							<td><s:textfield id="invoicTestId" cssClass="form-control" name="customerDetailBean.invoiceNo" autocomplete="off" required="true" /></td>
 							<td><b>Invoice Date</b><span class="important">:*</span></td>
 							<td><s:textfield cssClass="form-control" id="datepicker" name="customerDetailBean.invoiceDate" autocomplete="off" required="true" /></td>
 						</tr>
@@ -88,6 +88,29 @@
 							<td><s:textfield cssClass="form-control" name="dispatchDetailBean.documentThruBank" autocomplete="off" required="true" /></td>
 							<td></td>
 							<td></td>
+						</tr>
+					</table>
+					
+					<div class="panel-heading">	
+					<h4 class="panel-title">
+						<strong>Additional Charges</strong>
+					</h4>
+					</div>
+					<table class="table table-bordered table-striped table-highlight table-hover" >
+						<tr>
+							<td><b>Courier Charge:</b><span class="important">:*</span></td>
+							<td><s:textfield cssClass="form-control" 
+							name="customerDetailBean.courierCharge" autocomplete="off" required="true" /></td>
+							
+							<td><b>LBT %:</b><span class="important">:*</span></td>
+							<td><s:textfield cssClass="form-control" 
+							name="customerDetailBean.lbtPercent" autocomplete="off" required="true" /></td>
+						</tr>
+						<tr>
+							<td><b>VAT %:</b><span class="important">:*</span></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.vatPercent" autocomplete="off" required="true" /></td>
+							<td><b>Service Tax %:</b><span class="important">:*</span></td>
+							<td><s:textfield cssClass="form-control" name="customerDetailBean.serviceTaxPercent" autocomplete="off" required="true" /></td>
 						</tr>
 					</table>
 							<div class="row">
