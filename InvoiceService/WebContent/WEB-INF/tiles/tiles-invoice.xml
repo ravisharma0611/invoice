@@ -25,9 +25,9 @@
 	</definition>
 	
 	<definition name="dashboard.page" extends="baseLayout.page">
-		<put-attribute name="header" value="/pages/header.jsp" />
-		<put-attribute name="body" value="/pages/dashboard.jsp" />
-		<put-attribute name="footer" value="" />
+		<put-attribute name="header" value="/pages/headerOverloaded.jsp" />
+		<put-attribute name="body" value="/pages/dashBoardOverloaded.jsp" />
+		<put-attribute name="footer" value="/pages/footerOverloaded.jsp" />
 	</definition>
 	
 	<definition name="register.page" extends="baseLayout.page">
@@ -37,15 +37,21 @@
 	</definition>
 	
 	<definition name="invoiceHome.page" extends="baseLayout.page">
-		<put-attribute name="header" value="/pages/header.jsp" />
+		<put-attribute name="header" value="/pages/headerOverloaded.jsp" />
 		<put-attribute name="body" value="/pages/customerDetails.jsp" />
-		<put-attribute name="footer" value="/pages/footer.jsp" />
+		<put-attribute name="footer" value="/pages/footerOverloaded.jsp" />
+	</definition>
+	
+	<definition name="detail.page" extends="baseLayout.page">
+		<put-attribute name="header" value="/pages/headerOverloaded.jsp" />
+		<put-attribute name="body" value="/pages/itemsDetails.jsp" />
+		<put-attribute name="footer" value="/pages/footerOverloaded.jsp" />
 	</definition>
 	
 	<definition name="invoiceSearch.page" extends="baseLayout.page">
-		<put-attribute name="header" value="/pages/header.jsp" />
+		<put-attribute name="header" value="/pages/headerOverloaded.jsp" />
 		<put-attribute name="body" value="/pages/searchPage/invoiceSearch.jsp" />
-		<put-attribute name="footer" value="/pages/footer.jsp" />
+		<put-attribute name="footer" value="/pages/footerOverloaded.jsp" />
 	</definition>
 	
 	<definition name="error.page" extends="baseLayout.page">

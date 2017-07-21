@@ -16,7 +16,25 @@ public class SessionData {
 	private Long invoiceNo;
 	private String userName;
 	private String firstName;
+	private DispatchDetailBean dispatchDetailBean;
+	private CustomerDetailBean customerDetailBean;
 	
+	public DispatchDetailBean getDispatchDetailBean() {
+		return dispatchDetailBean;
+	}
+
+	public void setDispatchDetailBean(DispatchDetailBean dispatchDetailBean) {
+		this.dispatchDetailBean = dispatchDetailBean;
+	}
+
+	public CustomerDetailBean getCustomerDetailBean() {
+		return customerDetailBean;
+	}
+
+	public void setCustomerDetailBean(CustomerDetailBean customerDetailBean) {
+		this.customerDetailBean = customerDetailBean;
+	}
+
 	public Long getInvoiceNo() {
 		return invoiceNo;
 	}

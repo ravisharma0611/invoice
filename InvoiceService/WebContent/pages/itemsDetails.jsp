@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<head>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-dialog.min.css">
@@ -16,11 +18,16 @@
 <script src="../js/jquery.validationEngine-en.js"></script>
 <script src="../js/jquery.validationEngine.js"></script>
 <script src="../js/itemDetails.js"></script>
+
 <style type="text/css">
 
 input[type="text"]{
 border:none;
 background:transparent;
+}
+
+table tbody tr td input[type='text']{
+width:150px;
 }
 
 </style>
@@ -30,7 +37,44 @@ background:transparent;
 <br>
 <br>
 <br>
-<form id="globalFormId">
+
+<s:form id="globalFormId" theme="simple">
+<div class="container">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background:#486684">
+                            <div style="color: #fff">Add Item Detail</div>
+                        </div>
+                        
+                        <div class="panel-body tableAdd">
+                        	  <table class="table table-striped table-bordered table-hover" id="itemDetailId">
+                                <thead style="background:#5b80a4;color:#fff">
+                         <tr>
+       <th>#</th>
+		<th>Product</th>
+		<th>Price</th>
+		<th>Quantity</th>
+		<th>Per</th>
+		<th>Total</th>
+		<th>Action</th>
+		<th><a href="javascript:void(0)" onclick="addRow()">Add</a></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        
+                           <a href="javascript:void(0)" onclick="submitForm()" class="btn btn-primary pull-right">Submit</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+    </div>
+
+</s:form>
+
+
+<%-- <s:form id="globalFormId" theme="simple">
 <div class="container">
 	<table class="table table-bordered" id="itemDetailId">
 	<tr>
@@ -47,7 +91,8 @@ background:transparent;
 <a href="javascript:void(0)" onclick="submitForm()" class="btn btn-primary pull-right">Submit</a>
 </div>
 
-</form>
-
+</s:form>
+ --%>
+ <br>
 </body>
 </html>

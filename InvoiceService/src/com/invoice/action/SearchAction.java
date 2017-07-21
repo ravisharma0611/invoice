@@ -1,21 +1,22 @@
 package com.invoice.action;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.invoice.bean.CustomerDetailBean;
+import com.invoice.bean.DispatchDetailBean;
 import com.invoice.bean.ItemDetailBean;
 import com.invoice.jpa.JpaService;
 import com.invoice.jpa.JpaServiceFactory;
 
 @SuppressWarnings("serial")
 public class SearchAction extends BaseServiceAction{
-	//JpaService jpaService = JpaServiceFactory.getFactory();
+	JpaService jpaService = JpaServiceFactory.getFactory();
 	List<CustomerDetailBean> custList = new ArrayList<>();
 	List<ItemDetailBean> itemList = new ArrayList<>();
+	List<DispatchDetailBean> otherDetails = new ArrayList<>();
 	
 
 	
@@ -23,20 +24,19 @@ public class SearchAction extends BaseServiceAction{
 
 	public String searchData()throws Exception{
 		try{
-			//jpaService.createEntityManager();
-			System.out.println("in class");
-			dummyData();
+			jpaService.createEntityManager();
+			//dummyData();
 			
 			
-			/*Map<Integer,Object> parameters = new HashMap<Integer,Object>();
+			Map<Integer,Object> parameters = new HashMap<Integer,Object>();
 			StringBuffer query = new StringBuffer();
-			query.append("select * from XYZ_TABLE where ");
+			query.append("select * from CUSTOMERDETAIL where ");
 			int count = 0;
 			
 			if(request.getParameter("invoiceId")!=null && !request.getParameter("invoiceId").isEmpty()){
 				++count;
 				query.append("INVOICENO=? and ");
-				Long invoiceNo = Long.getLong(request.getParameter("invoiceId"));
+				Long invoiceNo = Long.parseLong(request.getParameter("invoiceId"));
 				parameters.put(count,invoiceNo);
 			}
 			
@@ -56,26 +56,48 @@ public class SearchAction extends BaseServiceAction{
 			}else{
 				custList = jpaService.getUsingNativeQuery(query.toString(), parameters,CustomerDetailBean.class);
 			}
-			*/
+			
 			
 			
 			
 		}catch(Exception e){
 			throw e;
 		}finally{
-			//jpaService.commitAndCloseEntityManager();
+			jpaService.commitAndCloseEntityManager();
 		}
 		return SUCCESS;
 	}
 	
 	
+	public List<DispatchDetailBean> getOtherDetails() {
+		return otherDetails;
+	}
+
+
+	public void setOtherDetails(List<DispatchDetailBean> otherDetails) {
+		this.otherDetails = otherDetails;
+	}
+
+
 	public String findItem()throws Exception{
 		try{
-			dummyItem();
+			jpaService.createEntityManager();
+			if(request.getParameter("invoiceNumber")!=null && !request.getParameter("invoiceNumber").isEmpty()){
+				Long invoiceUINum = Long.parseLong(request.getParameter("invoiceNumber"));
+				Map<Integer,Object> parameters = new HashMap<Integer,Object>();
+				String findItemDetail = "select * from PRODUCT_PER_CUSTOMER where INVOICENO = "+invoiceUINum;
+				itemList = jpaService.getUsingNativeQuery(findItemDetail, parameters, ItemDetailBean.class);
+				
+				String findOtherDetails = "select* from DISPATCH_DETAIL where INVOICENO ="+invoiceUINum;
+				otherDetails = jpaService.getUsingNativeQuery(findOtherDetails, parameters, DispatchDetailBean.class);
+				
+			}
+			
+			//dummyItem();
 		}catch(Exception e){
 			
 		}finally{
-			
+			jpaService.commitAndCloseEntityManager();
 		}
 		return SUCCESS;
 	}
@@ -91,27 +113,27 @@ public class SearchAction extends BaseServiceAction{
 	}
 	
 	private void dummyData(){
-		/*CustomerDetailBean bean = new CustomerDetailBean();
+		CustomerDetailBean bean = new CustomerDetailBean();
 		bean.setBilledAddress("Patna");
 		bean.setBilledName("Vivek");
 		bean.setChallanNo("ASP-897-BN");
 		bean.setChallanNoDate("12-April-2017");
-		bean.setCourierCharge(567l);
-		bean.setGrandTotal(980d);
+		bean.setCourierCharge(567f);
+		bean.setGrandTotal(980f);
 		bean.setGrandTotalWords("Nine Hundred and Eighty Only");
 		bean.setInvoiceDate("12-April-2017");
 		bean.setInvoiceNo(129167l);
-		bean.setLbt(23d);
-		bean.setLbtPercent(12d);
+		bean.setLbt(23f);
+		bean.setLbtPercent(12f);
 		bean.setPoNo("UI:123");
 		bean.setPoNoDate("12-April-2017");
-		bean.setServiceTax(23d);
-		bean.setServiceTaxPercent(12d);
-		bean.setVat(3.4d);
+		bean.setServiceTax(23f);
+		bean.setServiceTaxPercent(12f);
+		bean.setVat(3.4f);
 		bean.setVatNo("34SD");
-		bean.setVatPercent(1d);*/
+		bean.setVatPercent(1f);
 		
-		//custList.add(bean);
+		custList.add(bean);
 	}
 	
 	public List<CustomerDetailBean> getCustList() {

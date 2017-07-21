@@ -12,29 +12,25 @@ import javax.persistence.SequenceGenerator;
 public class ItemDetailBean {
 	
 	@Id
-	/*@SequenceGenerator(name="PRODUCT_PER_CUSTOMER_SEQ")
-	@GeneratedValue(strategy=GenerationType.AUTO,generator="PRODUCT_PER_CUSTOMER_SEQ")*/
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="PRODUCT_PER_CUSTOMER_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PRODUCT_PER_CUSTOMER_SEQ")
 	@SequenceGenerator(name="PRODUCT_PER_CUSTOMER_SEQ", sequenceName="PRODUCT_PER_CUSTOMER_SEQ", allocationSize=1)
 	@Column(name="IDKEY_PPC")
 	private Integer idKeyPpc;
 	@Column(name="PARTICULARS_PRODUCT")
-	private String item;
+	private String item = "";
 	@Column(name="RATE")
-	private Float price;
+	private Float price = 0.0f;
 	@Column(name="QUANTITY")
-	private Integer quantity;
+	private Integer quantity = 0;
 	@Column(name="PER")
-	private String per;
+	private String per = "";
 	@Column(name="AMOUNT")
-	private Float subTotal;
+	private Float subTotal = 0.0f;
 	
 	@Column(name="INVOICENO")
 	private Long invoiceNo;
 	
-	/*@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="invoiceNo",updatable=true,insertable=true)
-	private CustomerDetailBean customerDetailBean;*/
+	
 	
 	public Long getInvoiceNo() {
 		return invoiceNo;
@@ -42,12 +38,7 @@ public class ItemDetailBean {
 	public void setInvoiceNo(Long invoiceNo) {
 		this.invoiceNo = invoiceNo;
 	}
-	/*public CustomerDetailBean getCustomerDetailBean() {
-		return customerDetailBean;
-	}
-	public void setCustomerDetailBean(CustomerDetailBean customerDetailBean) {
-		this.customerDetailBean = customerDetailBean;
-	}*/
+	
 	public void setIdKeyPpc(Integer idKeyPpc) {
 		this.idKeyPpc = idKeyPpc;
 	}

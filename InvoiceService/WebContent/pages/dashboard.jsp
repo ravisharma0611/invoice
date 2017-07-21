@@ -57,37 +57,9 @@
 
 				</div>
 				
-				<!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-					<div class="div-square">
-						<a href="blank.html"> <i class="fa fa-users fa-5x"></i>
-							<h4>See Users</h4>
-						</a>
-					</div>
-
-
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-					<div class="div-square">
-						<a href="blank.html"> <i class="fa fa-key fa-5x"></i>
-							<h4>Admin</h4>
-						</a>
-					</div>
-
-
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-					<div class="div-square">
-						<a href="blank.html"> <i class="fa fa-comments-o fa-5x"></i>
-							<h4>Support</h4>
-						</a>
-					</div>
-
-
-				</div> -->
+	
 			</div>
 			
 		</div>
-		<!-- /. PAGE INNER  -->
-	<!-- /. PAGE WRAPPER  -->
 </body>
 </html>

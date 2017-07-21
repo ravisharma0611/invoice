@@ -1,67 +1,68 @@
 package com.invoice.bean;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
-
-//@Entity(name="CUSTOMERDETAIL")
+@Entity(name="CUSTOMERDETAIL")
 public class CustomerDetailBean {
 	
-	//@Id
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CUST_DETAIL_SEQ")
+    @SequenceGenerator(name="CUST_DETAIL_SEQ", sequenceName="CUST_DETAIL_SEQ", allocationSize=1)
 	private int idKey;
+	@Column(name="INVOICENO")
+	private Long invoiceNo;
+	@Column(name="INVOICE_DATE")
+	private String invoiceDate = " ";
+	@Column(name="BILLEDNAME")
+	private String billedName = " ";
+	private String billedAddress = " ";
 	
-	private String invoiceNo;
-	private String invoiceDate;
-	private String billedName;
-	private String billedAddress;
-	private String vatNo;
-	private String challanNo;
-	private String challanNoDate;
-	private String poNo;
-	private String poNoDate;
-	private String courierCharge;
-	private String lbt;
-	private String vat;
-	private String serviceTax;
-	private String lbtPercent;
-	private String vatPercent;
-	private String serviceTaxPercent;
-	private String grandTotal;
-	private String greatGrandTotal;
-	private String grandTotalWords;
-	//Unique
-/*	private long invoiceNo;
-	private Date invoiceDate;
-	private String billedName;
-	private String billedAddress;
-	private String vatNo;
-	private String challanNo;
-	private Date challanNoDate;
-	private String poNo;
-	private Date poNoDate;
-	private long courierCharge;
-	private double lbt;
-	private double vat;
-	private double serviceTax;
-	private double lbtPercent;
-	private double vatPercent;
-	private double serviceTaxPercent;
-	private double grandTotal;
-	private double greatGrandTotal;
-	private String grandTotalWords;*/
+	@Column(name="VAT_NO")
+	private String vatNo = " ";
 	
-	//One TO One Mapping
-	//@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "dispatchId")
-	/*DispatchDetailBean dispatchDetailBean = new DispatchDetailBean();
+	@Column(name="CHALLAN_NO")
+	private String challanNo = " ";
 	
-	//One to Many Mapping
-	//@OneToMany(cascade=ALL, mappedBy="itemDetailList")
-	Set<ItemDetailBean> itemDetailList = new HashSet<ItemDetailBean>();
-	*/
+	@Column(name="CHALLAN_NO_DATE")
+	private String challanNoDate = " ";
+	
+	@Column(name="PO_NO")
+	private String poNo = " ";
+	
+	@Column(name="PO_NO_DATE")
+	private String poNoDate = " ";
+	@Column(name="COURIER_CHARGE")
+	private Float courierCharge = 0.0f;
+	@Column(name="LBT")
+	private Float lbt = 0.0f;
+	private Float vat = 0.0f;
+	
+	@Column(name="SERVICE_TAX")
+	private Float serviceTax = 0.0f;
+	
+	@Column(name="LBT_PERCENT")
+	private Float lbtPercent = 0.0f;
+	
+	@Column(name="VAT_PERCENT")
+	private Float vatPercent = 0.0f;
+	
+	@Column(name="SERVICE_TAX_PERCENT")
+	private Float serviceTaxPercent = 0.0f;
+	
+	@Column(name="GRAND_TOTAL")
+	private Float grandTotal = 0.0f;
+	
+	@Column(name="GREAT_GRAND_TOTAL")
+	private Float greatGrandTotal = 0.0f;
+	
+	@Column(name="GRAND_TOTAL_WORDS")
+	private String grandTotalWords = " ";
+	
 	
 	public int getIdKey() {
 		return idKey;
@@ -78,12 +79,14 @@ public class CustomerDetailBean {
 
 	
 
-	public String getInvoiceNo() {
+	
+
+	public Long getInvoiceNo() {
 		return invoiceNo;
 	}
 
 
-	public void setInvoiceNo(String invoiceNo) {
+	public void setInvoiceNo(Long invoiceNo) {
 		this.invoiceNo = invoiceNo;
 	}
 
@@ -91,7 +94,6 @@ public class CustomerDetailBean {
 	public String getInvoiceDate() {
 		return invoiceDate;
 	}
-
 
 	public void setInvoiceDate(String invoiceDate) {
 		this.invoiceDate = invoiceDate;
@@ -137,11 +139,9 @@ public class CustomerDetailBean {
 		this.challanNo = challanNo;
 	}
 
-
 	public String getChallanNoDate() {
 		return challanNoDate;
 	}
-
 
 	public void setChallanNoDate(String challanNoDate) {
 		this.challanNoDate = challanNoDate;
@@ -157,103 +157,106 @@ public class CustomerDetailBean {
 		this.poNo = poNo;
 	}
 
-
 	public String getPoNoDate() {
 		return poNoDate;
 	}
-
 
 	public void setPoNoDate(String poNoDate) {
 		this.poNoDate = poNoDate;
 	}
 
 
-	public String getCourierCharge() {
+	
+
+
+	public Float getCourierCharge() {
 		return courierCharge;
 	}
 
 
-	public void setCourierCharge(String courierCharge) {
+	public void setCourierCharge(Float courierCharge) {
 		this.courierCharge = courierCharge;
 	}
 
 
-	public String getLbt() {
+	
+
+	public Float getLbt() {
 		return lbt;
 	}
 
 
-	public void setLbt(String lbt) {
+	public void setLbt(Float lbt) {
 		this.lbt = lbt;
 	}
 
 
-	public String getVat() {
+	public Float getVat() {
 		return vat;
 	}
 
 
-	public void setVat(String vat) {
+	public void setVat(Float vat) {
 		this.vat = vat;
 	}
 
 
-	public String getServiceTax() {
+	public Float getServiceTax() {
 		return serviceTax;
 	}
 
 
-	public void setServiceTax(String serviceTax) {
+	public void setServiceTax(Float serviceTax) {
 		this.serviceTax = serviceTax;
 	}
 
 
-	public String getLbtPercent() {
+	public Float getLbtPercent() {
 		return lbtPercent;
 	}
 
 
-	public void setLbtPercent(String lbtPercent) {
+	public void setLbtPercent(Float lbtPercent) {
 		this.lbtPercent = lbtPercent;
 	}
 
 
-	public String getVatPercent() {
+	public Float getVatPercent() {
 		return vatPercent;
 	}
 
 
-	public void setVatPercent(String vatPercent) {
+	public void setVatPercent(Float vatPercent) {
 		this.vatPercent = vatPercent;
 	}
 
 
-	public String getServiceTaxPercent() {
+	public Float getServiceTaxPercent() {
 		return serviceTaxPercent;
 	}
 
 
-	public void setServiceTaxPercent(String serviceTaxPercent) {
+	public void setServiceTaxPercent(Float serviceTaxPercent) {
 		this.serviceTaxPercent = serviceTaxPercent;
 	}
 
 
-	public String getGrandTotal() {
+	public Float getGrandTotal() {
 		return grandTotal;
 	}
 
 
-	public void setGrandTotal(String grandTotal) {
+	public void setGrandTotal(Float grandTotal) {
 		this.grandTotal = grandTotal;
 	}
 
 
-	public String getGreatGrandTotal() {
+	public Float getGreatGrandTotal() {
 		return greatGrandTotal;
 	}
 
 
-	public void setGreatGrandTotal(String greatGrandTotal) {
+	public void setGreatGrandTotal(Float greatGrandTotal) {
 		this.greatGrandTotal = greatGrandTotal;
 	}
 

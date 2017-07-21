@@ -1,8 +1,14 @@
+var count = 0;
 $(document).ready(
 	function() {
 	    "use strict";
 
+	    /*
+	     * $('#custDetailId').DataTable({ responsive : true });
+	     */
+
 	    // on load hiding all the tables
+	    $('.initClassParent').hide();
 	    $('.initClass').hide();
 
 	    var start = moment().subtract(29, 'days');
@@ -10,6 +16,9 @@ $(document).ready(
 	    // 30-APR-17
 	    $('#dateId').daterangepicker(
 		    {
+			/*
+			 * locale : { format : 'DD/MMM/YYYY' },
+			 */
 			startDate : start,
 			endDate : end,
 			ranges : {
@@ -33,21 +42,22 @@ $(document).ready(
 	    cb(start, end);
 
 	    // register downloadPDF call
+	    // show item detail table
+	    $('#custDetailId').off().on('click', '.invoiceNumClass',
+		    function() {
+			var invoiceNumber = $(this).text();
+			ItemDetailTab(invoiceNumber);
+
+		    });
+
 	    $('#custDetailId').on(
 		    'click',
-		    '.custInfoPDF',
+		    '.custInfopdfDownload',
 		    function() {
 			var invoiceNumber = $(this).closest('tr').find(
 				'td:first a').text();
-			DownloadPDF(invoiceNumber);
+			DownloadPDF('searchParentId', invoiceNumber);
 		    });
-
-	    // show item detail table
-	    $('#custDetailId').on('click', '.invoiceNumClass', function() {
-		var invoiceNumber = $(this).text();
-		ItemDetailTab(invoiceNumber);
-
-	    });
 
 	});
 
@@ -84,8 +94,8 @@ function searchForm() {
 		},
 		success : function(response) {
 
-		    if (response.custList.length > 0) {
-			ConstructCustomerDetail(response.custList);
+		    if (response.length > 0) {
+			ConstructCustomerDetail(response);
 		    } else {
 			NoDataFound();
 		    }
@@ -102,9 +112,27 @@ function searchForm() {
 
 }
 
+function overrideNULLValues(item) {
+    for (var i = 0; i < item.length; i++) {
+	var custObject = item[i];
+	var props = Object.keys(custObject);
+	for (var j = 0; j < props.length; j++) {
+	    if (custObject[props[j]] === null) {
+		custObject[props[j]] = "";
+	    }
+
+	}
+    }
+    return item;
+}
+
 function ConstructCustomerDetail(customerDetail) {
+    customerDetail = overrideNULLValues(customerDetail);
+    var html = "";
     for (var i = 0; i < customerDetail.length; i++) {
-	var html = '<tr>' + '<td>'
+	html = html
+		+ '<tr>'
+		+ '<td>'
 		+ '<a href="javascript:void(0)" class="invoiceNumClass">'
 		+ customerDetail[i].invoiceNo
 		+ '</a>'
@@ -145,12 +173,16 @@ function ConstructCustomerDetail(customerDetail) {
 		+ '<td>'
 		+ customerDetail[i].grandTotal
 		+ '</td>'
-		+ '<td><a href="javascript:void(0)" class="custInfoPDF"><img src="../../image/download.png"></img></a></td>'
-		+ '</tr>';
+		+ '<td>'
+		+ '<a href="javascript:void(0)" class="custInfopdfDownload"><img src="image/download.png"></img></a>'
+		+ '</td>' + '</tr>';
 
-	$('#custDetailId tr:last').after(html);
-	$('#custDetailId').show();
+	// $('#custDetailId tr:last').after(html);
     }
+    $("#custDetailId tbody").append(html);
+    $('#custDetailDivId').show();
+    // hide below tables
+    $('.initClass').hide();
 }
 
 function NoDataFound() {
@@ -159,6 +191,7 @@ function NoDataFound() {
 	title : 'INFO',
 	message : 'No Data Found',
 	buttons : [ {
+	    label : 'OK',
 	    action : function(dialogItself) {
 		dialogItself.close();
 	    }
@@ -172,6 +205,7 @@ function AjaxError() {
 	title : 'ERROR',
 	message : 'Server Error..Please try again later',
 	buttons : [ {
+	    label : 'OK',
 	    action : function(dialogItself) {
 		dialogItself.close();
 	    }
@@ -185,6 +219,7 @@ function ExceptionCondition(errMsg) {
 	title : 'ERROR',
 	message : errMsg,
 	buttons : [ {
+	    label : 'OK',
 	    action : function(dialogItself) {
 		dialogItself.close();
 	    }
@@ -192,10 +227,11 @@ function ExceptionCondition(errMsg) {
     });
 }
 
-function DownloadPDF(invoiceNumber) {
-    $('#').attr('action', 'downloadPDF?invoiceNumber=' + invoiceNumber).attr(
-	    'method', 'post');
-    $('#').submit();
+function DownloadPDF(formId, invoiceNumber) {
+    $('#' + formId)
+	    .attr('action', 'downloadInvoice?invoiceNo=' + invoiceNumber).attr(
+		    'method', 'post');
+    $('#' + formId).submit();
 }
 
 function ItemDetailTab(invoiceNumber) {
@@ -213,6 +249,9 @@ function ItemDetailTab(invoiceNumber) {
 
 		    if (response.itemList.length > 0) {
 			ConstructItemDetail(response.itemList, invoiceNumber);
+			ConstructOtherDetail(response.otherDetails,
+				invoiceNumber);
+
 		    } else {
 			NoDataFound();
 		    }
@@ -229,15 +268,38 @@ function ItemDetailTab(invoiceNumber) {
 
 }
 
+function ConstructOtherDetail(otherDetail, invoiceNumber) {
+    $('#otherDetailId').find('tr:gt(0)').remove();
+    otherDetail = overrideNULLValues(otherDetail);
+    var html = "";
+    for (var i = 0; i < otherDetail.length; i++) {
+	html = html + '<tr>' + '<td>' + invoiceNumber + '</td>' + '<td>'
+		+ otherDetail[i].perRrMmNumber + '</td>' + '<td>'
+		+ otherDetail[i].perRrMmNumberDate + '</td>' + '<td>'
+		+ otherDetail[i].blNumber + '</td>' + '<td>'
+		+ otherDetail[i].blNumberDate + '</td>' + '<td>'
+		+ otherDetail[i].documentThruBank + '</td>' + '<td>'
+		+ otherDetail[i].byMotorTransport + '</td>' + '</tr>';
+
+	// $('#otherDetailId tr:last').after(html);
+    }
+    $('#otherDetailId tbody').append(html);
+    $('#otherDetailDivId').show();
+}
+
 function ConstructItemDetail(itemDetail, invoiceNumber) {
+    $('#itemSearchDetailId').find('tr:gt(0)').remove();
+    itemDetail = overrideNULLValues(itemDetail);
+    var html = "";
     for (var i = 0; i < itemDetail.length; i++) {
-	var html = '<tr>' + '<td>' + invoiceNumber + '</td>' + '<td>'
+	html = html + '<tr>' + '<td>' + invoiceNumber + '</td>' + '<td>'
 		+ itemDetail[i].item + '</td>' + '<td>'
 		+ itemDetail[i].quantity + '</td>' + '<td>'
 		+ itemDetail[i].price + '</td>' + '<td>' + itemDetail[i].per
 		+ '</td>' + '<td>' + itemDetail[i].subTotal + '</td>' + '</tr>';
 
-	$('#itemDetailId tr:last').after(html);
-	$('#itemDetailId').show();
+	// $('#itemSearchDetailId tr:last').after(html);
     }
+    $('#itemSearchDetailId tbody').append(html);
+    $('#itemSearchDetailDivId').show();
 }

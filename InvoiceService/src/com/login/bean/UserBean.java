@@ -12,7 +12,7 @@ public class UserBean {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USERDETAIL_SEQ")
-    @SequenceGenerator(name="USERDETAIL_SEQ", sequenceName="USERDETAIL_SEQ", allocationSize=100)
+    @SequenceGenerator(name="USERDETAIL_SEQ", sequenceName="USERDETAIL_SEQ", allocationSize=1)
 	private int idKey;
 	private String firstName;
 	private String middleName;

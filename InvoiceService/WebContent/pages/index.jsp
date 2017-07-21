@@ -1,29 +1,22 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
 
 
-<%-- <link type="text/css" rel="stylesheet" href="css/login.css"/>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="css/notification.css"/>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.min.js"></script> --%>
-
 </head>
-<body>
-<s:url var="fileDownload" action="downloadInvoice" ></s:url>
-<s:a cssClass="" href="%{fileDownload}">download</s:a>
+<body background="image/invoiceServiceLogin.jpg">
+
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5  col-md-offset-3">
+        <div class="col-md-4  col-md-offset-4">
             <div class="account-wall">
                 <div id="my-tab-content" class="tab-content">
 						<div class="tab-pane active" id="login">
-               		    <img class="profile-img" src="image/photo.jpg?sz=120"
+               		    <img class="profile-img" src="image/avatar_2x.png"
                     alt="">
                     <s:if test="hasActionErrors()">
 					   <div class="errors">
@@ -39,7 +32,8 @@
                				<s:fielderror fieldName="userName" />
                				<s:textfield cssClass="form-control" name="userBean.userName" placeholder="Username" autocomplete="off" required="true" autofocus="true"/>
                				<s:fielderror fieldName="password" />
-               				<s:password cssClass="form-control" name="userBean.password" placeholder="Password"  required="true" />
+               				<br>
+               				<s:password cssClass="form-control" name="userBean.password" placeholder="Password"  required="true" autocomplete="off"/>
                				<br>
                				<s:submit cssClass="btn btn-lg btn-default btn-block" value="Sign In"></s:submit>
                			</form>
@@ -55,3 +49,4 @@
     </div>
 </div>
 </body>
+</html>

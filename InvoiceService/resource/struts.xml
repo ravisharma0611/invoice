@@ -4,14 +4,10 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
-<!-- Struts 2.5 -->
-<!-- <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-        "http://struts.apache.org/dtds/struts-2.5.dtd"> -->
         
 <struts>
-	<constant name="struts.devMode" value="true" />
-	<package name="default" extends="struts-default, tiles-default" namespace="/">
+	<constant name="struts.devMode" value="false" />
+	<package name="default" extends="struts-default, tiles-default, json-default" namespace="/">
 
 		<interceptors>
                 <interceptor class="com.invoice.action.intercepter.LoginInterceptor" name="loginInterceptor">
@@ -26,7 +22,8 @@
 		<action name="submitInvoiceActionName" class="com.invoice.action.InvoiceBillAction"
 			method="submitInvoiceBill">
 			<interceptor-ref name="loginStack" />
-			<result name="success" type="tiles">invoiceHome.page</result>
+			<result name="success" type="tiles">detail.page</result>
+			<result name="input" type="tiles">invoiceHome.page</result>
 			<result name="login" type="tiles">login.page</result>
 			<result name="error" type="tiles">error.page</result>
 		</action>
@@ -72,23 +69,60 @@
 			<result name="input">/pages/registration.jsp</result>
 			<result name="error" type="tiles">error.page</result>
 		</action>
+
 		<action name="">
 			<result type="tiles">login.page</result>
+			</action>
+
+		<action name="submitItemDetails" method="submitItemDetails" 
+		class="com.invoice.action.ItemDetailAction">
+			<result name="success" type="json">
+				<param name="noCache">true</param>
+				<param name="enableGZIP"></param>
+			</result>
 		</action>
 		
 		<action name="register" >
 			<result>/pages/registration.jsp</result>
 		</action>
+
 		<!-- inline-attachment -->
 		<action name="downloadInvoice" class="com.invoice.action.FileDownloadAction"
 			method="fileDownloadMethod">
 			<result name="success" type="stream">
 			  <param name="contentType">application/octet-stream</param>
-			  <param name="inputName">${fileInputStream}</param>
-			  <param name="contentDisposition">attachment;filename="eCertificate.pdf"</param>
+			  <param name="inputName">fileInputStream</param>
+			  <param name="contentDisposition">attachment;filename="${fileName}"</param>
 			  <param name="bufferSize">1024</param>
 			</result>
-			<result name="input"></result>
+			
 	   </action>
+		
+		<action name="searchDB" method="searchData" class="com.invoice.action.SearchAction">
+			<result name="success" type="json">
+				<param name="enableGZIP"></param>
+				<param name="noCache">true</param>
+				<param name="root">custList</param>
+			</result>
+		</action>
+		
+		<action name="findItem" method="findItem" class="com.invoice.action.SearchAction">
+			<result name="success" type="json">
+				<param name="enableGZIP"></param>
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		
+		<action name="invoiceValuePresent" method="isInvoicePresent" class="com.invoice.action.InvoiceBillAction">
+			<result name="success" type="json">
+				<!-- <param name="enableGZIP"></param> -->
+				<param name="noCache">true</param>
+				<param name="root">invoicePresent</param>
+			</result>
+			<result name="input">invoiceHome.page</result>
+			
+		</action>
+		
+
 	</package>
 </struts>

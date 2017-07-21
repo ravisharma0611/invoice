@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,14 +6,26 @@
 </head>
 <body>
 
-<div class="footer">
+<footer class="footer">
+
+<div class="row">
+                <div class="right" >
+                    &copy;  2017 Invoice Service
+                </div>
+            </div>
+        
+
+</footer>
+
+<!-- <div class="footer" style="margin-bottom: 30px;">
       
     
             <div class="row">
                 <div class="col-lg-12" >
-                    &copy;  2017 google.com | Design by: <a href="http://xyz.com" style="color:#fff;" target="_blank">www.google.com</a>
+                    &copy;  2017 Invoice Service
                 </div>
             </div>
-        </div>
+        </div> -->
+        
 </body>
 </html>

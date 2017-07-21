@@ -20,10 +20,6 @@ public class LoginAction extends BaseServiceAction {
 	JpaService jpaService = JpaServiceFactory.getFactory();
 	
 	public String loginUser(){
-		System.out.println(userBean);
-		//Temp Code
-		sessionData.setUserName(userBean.getUserName());
-		sessionData.setFirstName("Ravi");
 		sessionMap.put("SESSION_DATA", sessionData);
 		return SUCCESS;
 	}
@@ -81,9 +77,7 @@ public class LoginAction extends BaseServiceAction {
 		super.validate();
 		ActionContext context = ActionContext.getContext();
 		String actionName = context.getName();
-		System.out.println("Action Name : "+actionName);
 		if(actionName.equals("registerAction")){
-			System.out.println("context : Action called registerAction.");
 			try {
 				if(checkUserName()){
 					addFieldError("userNameTaken", "Username is already taken!");
@@ -97,7 +91,6 @@ public class LoginAction extends BaseServiceAction {
 			}
 		}
 		if(actionName.equals("login")){
-			System.out.println("context : Action called Login.");
 		
 			if(null !=userBean && (userBean.getUserName().isEmpty() || userBean.getPassword().isEmpty())){
 				addFieldError("userName", "User ID is required");
@@ -105,10 +98,10 @@ public class LoginAction extends BaseServiceAction {
 			} else
 				try {
 					if(!validateUser()){
-						addActionError("I don't know you, dont try to hack me!");
+						addActionError("Either UserName or Psaaword is incorrect");
 					}
 				} catch (Exception e) {
-					addActionError("Some Exception occured! "+e.getMessage());
+					addActionError("Something went wrong! "+e.getMessage());
 					e.printStackTrace();
 				}
 		}

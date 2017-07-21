@@ -1,20 +1,58 @@
 package com.invoice.bean;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
-//@Entity(name="DISPATCH_DETAIL")
+@Entity(name="DISPATCH_DETAIL")
 public class DispatchDetailBean {
-	//@id
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DISPATCH_DETAIL_SEQ")
+    @SequenceGenerator(name="DISPATCH_DETAIL_SEQ", sequenceName="DISPATCH_DETAIL_SEQ", allocationSize=1)
+	@Column(name="IDKEY_DESPATCH")
 	private long idkeyDespatch;
 	
-	private String perRrMmNumber;
-	private String perRrMmNumberDate;
-	private String blNumber;
-	private String blNumberDate;
-	private String documentThruBank;
-	private String byMotorTransport;
-	//private long invoiceNo;
-	private String despatchTo;
+	@Column(name="PER_RR_MM_NO")
+	private String perRrMmNumber = " ";
+	
+	@Column(name="PER_RR_MM_NO_DATE")
+	private String perRrMmNumberDate = " ";
+	
+	@Column(name="BL_NO")
+	private String blNumber = " ";
+	
+	@Column(name="BL_NO_DATE")
+	private String blNumberDate = " ";
+	
+	@Column(name="DOCUMENT_THRU_BANK")
+	private String documentThruBank = " ";
+	
+	@Column(name="BY_MOTOR_TRASPORT")
+	private String byMotorTransport = " ";
+	private long invoiceNo;
+	
+	@Column(name="DESPATCH_TO")
+	private String despatchTo = " ";
+	
+	
+	public long getInvoiceNo() {
+		return invoiceNo;
+	}
+
+
+
+
+	public void setInvoiceNo(long invoiceNo) {
+		this.invoiceNo = invoiceNo;
+	}
+
+
+
+
+	
 	
 	
 	
